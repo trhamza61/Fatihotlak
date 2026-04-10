@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Havuz Aracı Teslimat</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Havuz Aracı Teslimat Formu</h1>
+
+      <form id="deliveryForm" class="card">
+        <div class="grid">
+          <label>
+            Teslim Alan
+            <input name="personName" required placeholder="Ad Soyad" />
+          </label>
+
+          <label>
+            Teslim Eden
+            <input name="deliveredBy" required placeholder="Ad Soyad" />
+          </label>
+
+          <label>
+            E-posta
+            <input name="email" type="email" required placeholder="kullanici@kurum.gov.tr" />
+          </label>
+
+          <label>
+            Plaka
+            <input name="plate" required placeholder="34 ABC 123" />
+          </label>
+
+          <label>
+            Teslim Tarihi
+            <input name="handoverDate" type="date" required />
+          </label>
+
+          <label>
+            KM
+            <input name="km" type="number" min="0" required placeholder="Örn: 128450" />
+          </label>
+        </div>
+
+        <label>
+          Not
+          <textarea name="notes" rows="3" placeholder="Opsiyonel açıklama"></textarea>
+        </label>
+
+        <label class="inline">
+          <input id="autoMail" type="checkbox" checked />
+          Otomatik teslim maili aç
+        </label>
+
+        <button type="submit">Kaydet</button>
+      </form>
+
+      <section class="card">
+        <h2>Teslim Kayıtları</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Teslim Alan</th>
+              <th>Teslim Eden</th>
+              <th>Plaka</th>
+              <th>Teslim Tarihi</th>
+              <th>KM</th>
+              <th>E-posta</th>
+              <th>Mail</th>
+            </tr>
+          </thead>
+          <tbody id="recordsBody"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
