@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Havuz Araç Yönetim Tablosu</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header">
+        <div>
+          <p class="eyebrow">Araç Havuzu</p>
+          <h1>Havuz Araç Yönetim Tablosu</h1>
+          <p class="subtitle">
+            Araç teslimi ve iadesini takip edin, müdürlük/şeflik bilgilerini otomatik doldurun ve
+            e-posta bildirimleri oluşturun.
+          </p>
+        </div>
+        <button id="exportCsv" class="secondary">CSV Dışa Aktar</button>
+      </header>
+
+      <section class="card">
+        <h2>Yeni Araç Kaydı</h2>
+        <form id="vehicleForm" class="grid">
+          <label>
+            Teslim Alan Kişi
+            <input id="personName" name="personName" type="text" placeholder="Örn. Ayşe Demir" required />
+          </label>
+          <label>
+            Müdürlük
+            <select id="directorate" name="directorate" required>
+              <option value="">Seçiniz</option>
+            </select>
+          </label>
+          <label>
+            Şeflik
+            <select id="chiefdom" name="chiefdom" required>
+              <option value="">Seçiniz</option>
+            </select>
+          </label>
+          <label>
+            Araç Plakası
+            <input id="plate" name="plate" type="text" placeholder="34 ABC 123" required />
+          </label>
+          <label>
+            Teslim Tarihi
+            <input id="handoverDate" name="handoverDate" type="date" required />
+          </label>
+          <label>
+            İade Tarihi
+            <input id="returnDate" name="returnDate" type="date" />
+          </label>
+          <label>
+            E-posta
+            <input id="email" name="email" type="email" placeholder="ornek@kurum.gov.tr" required />
+          </label>
+          <label class="full-width">
+            Notlar
+            <textarea id="notes" name="notes" rows="3" placeholder="Teslim durumu ve açıklamalar"></textarea>
+          </label>
+          <div class="actions full-width">
+            <button type="submit" class="primary">Kaydı Oluştur</button>
+            <button type="reset" class="secondary">Formu Temizle</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="table-header">
+          <div>
+            <h2>Aktif Kayıtlar</h2>
+            <p class="muted">Teslim ve iade bildirimleri için satır içi butonları kullanın.</p>
+          </div>
+          <label class="search">
+            <span>Hızlı Arama</span>
+            <input id="searchInput" type="search" placeholder="İsim, plaka, müdürlük..." />
+          </label>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>İsim</th>
+                <th>Müdürlük</th>
+                <th>Şeflik</th>
+                <th>Plaka</th>
+                <th>Teslim Tarihi</th>
+                <th>İade Tarihi</th>
+                <th>E-posta</th>
+                <th>Durum</th>
+                <th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody id="recordsBody"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <dialog id="selfMonitorDialog">
+      <form method="dialog" class="dialog">
+        <header>
+          <h3>Öz İzleme</h3>
+          <button class="icon-button" value="cancel" aria-label="Kapat">×</button>
+        </header>
+        <div class="dialog-body">
+          <p class="muted">Seçilen kaydın detaylarını inceleyin.</p>
+          <div id="selfMonitorDetails" class="self-monitor-details"></div>
+        </div>
+        <footer>
+          <button class="primary" value="cancel">Kapat</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <dialog id="emailDialog">
+      <form method="dialog" class="dialog">
+        <header>
+          <h3>E-posta Bildirimi</h3>
+          <button class="icon-button" value="cancel" aria-label="Kapat">×</button>
+        </header>
+        <div class="dialog-body">
+          <p id="emailSummary" class="muted"></p>
+          <label>
+            E-posta Konusu
+            <input id="emailSubject" type="text" />
+          </label>
+          <label>
+            E-posta İçeriği
+            <textarea id="emailBody" rows="6"></textarea>
+          </label>
+        </div>
+        <footer>
+          <button id="sendMail" class="primary" value="send">Mail Gönder</button>
+          <button class="secondary" value="cancel">Kapat</button>
+        </footer>
+      </form>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
